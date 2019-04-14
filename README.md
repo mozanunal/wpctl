@@ -9,7 +9,14 @@ wallpaper automation tool for linux based on Unsplash
 ### Installing
 
 ```
-chmod +x /usr/bin/wpctl && sudo wget https://github.com/ -O /usr/local/bin/wp-cli
+sudo wget --quiet https://github.com/mozanunal/wpctl/releases/download/0.0.1/wpctl \
+          -O /usr/local/bin/wpctl && \
+          sudo chmod +x /usr/local/bin/wpctl
+
+```
+
+Try the application
+```
 ```
 
 ## Installing From Source
