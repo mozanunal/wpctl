@@ -40,11 +40,11 @@ setSource()
 printHelp()
 {
     echo "Usage:"
-    echo "wp-cli.sh SOURCE"
-    echo "          random"
-    echo "          daily"
-    echo "          collection"
-    echo "          topic1,topic2"
+    echo "wpctl SOURCE"
+    echo "      random"
+    echo "      daily"
+    echo "      collection"
+    echo "      topic1,topic2"
 }
 
 
