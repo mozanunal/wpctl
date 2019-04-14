@@ -12,7 +12,7 @@ getScreenRes ()
     RES_Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 }
 
-getWallPaper () 
+getWallPaper ()
 {
     RESULT=$(`wget -qO- $SOURCE_URl -O $PICTURE_DIRECTORY/wallpaper$DATE.jpeg`)
 }
@@ -31,18 +31,20 @@ setSource()
         echo "--> Daily is selected as source.";;
         "collection") SOURCE_URl=https://source.unsplash.com/collection/454888/$RES_X'x'$RES_Y
         echo "--> Collection is selected as source.";;
-        *) SOURCE_URl='https://source.unsplash.com/'$RES_X'x'$RES_Y'/?'$SOURCE_ARG
+        *) SOURCE_URl=https://source.unsplash.com/$RES_X'x'$RES_Y'/?'$SOURCE_ARG
         echo "--> $SEARCH_TERM is selected as source."
         ;;
-    esac    
-
-
+    esac
 }
 
 printHelp()
 {
     echo "Usage:"
     echo "wp-cli.sh SOURCE"
+    echo "          random"
+    echo "          daily"
+    echo "          collection"
+    echo "          topic1,topic2"
 }
 
 
@@ -56,9 +58,11 @@ then
     getScreenRes
     mkdir -p $PICTURE_DIRECTORY
     setSource
+    echo $SOURCE_URL
     getWallPaper
     setWallPaper
-    echo "--> wallpaper set."
+    echo "-->From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
+    notify-send "From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
 fi
 
 echo "$RESULT"
