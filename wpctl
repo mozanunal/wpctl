@@ -2,7 +2,7 @@
 
 RES_X=1920
 RES_Y=1080
-PICTURE_DIRECTORY=$HOME/Pictures/UnsplashWallpapers
+PICTURE_DIRECTORY=$HOME/wpctl
 DATE=$(date '+%Y_%m_%d_%H_%M_%S')
 
 
@@ -40,7 +40,7 @@ setSource()
 printHelp()
 {
     echo "Usage:"
-    echo "wpctl SOURCE"
+    echo "wpctl  SOURCE"
     echo "      random"
     echo "      daily"
     echo "      collection"
@@ -55,13 +55,16 @@ then
 elif [ -n $1 ]
 then
     SOURCE_ARG=$1
+    if [ ! -d "$DIRECTORY" ]; then
+        mkdir -p $PICTURE_DIRECTORY
+    fi
     getScreenRes
     mkdir -p $PICTURE_DIRECTORY
     setSource
     echo $SOURCE_URL
     getWallPaper
     setWallPaper
-    echo "-->From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
+    echo "--> From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
     notify-send "From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
 fi
 
