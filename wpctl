@@ -5,7 +5,6 @@ RES_Y=1080
 PICTURE_DIRECTORY=$HOME/wpctl
 DATE=$(date '+%Y_%m_%d_%H_%M_%S')
 
-
 getScreenRes ()
 {
     RES_X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
@@ -14,7 +13,7 @@ getScreenRes ()
 
 getWallPaper ()
 {
-    RESULT=$(`wget -qO- $SOURCE_URl -O $PICTURE_DIRECTORY/wallpaper$DATE.jpeg`)
+   IMAGE_URL=$(wget  $SOURCE_URL -O $PICTURE_DIRECTORY/wallpaper$DATE.jpeg 2>&1 | grep Location | awk '{print $2}')
 }
 
 setWallPaper()
@@ -25,14 +24,18 @@ setWallPaper()
 setSource()
 {
     case $SOURCE_ARG in
-        "random") SOURCE_URl=https://source.unsplash.com/random/$RES_X'x'$RES_Y
+        "random") 
+        SOURCE_URL=https://source.unsplash.com/random/$RES_X'x'$RES_Y
         echo "--> Random is selected as source.";;
-        "daily") SOURCE_URl=https://source.unsplash.com/daily
+        "daily") 
+        SOURCE_URL=https://source.unsplash.com/daily
         echo "--> Daily is selected as source.";;
-        "collection") SOURCE_URl=https://source.unsplash.com/collection/454888/$RES_X'x'$RES_Y
+        "collection") 
+        SOURCE_URL=https://source.unsplash.com/collection/454888/$RES_X'x'$RES_Y
         echo "--> Collection is selected as source.";;
-        *) SOURCE_URl=https://source.unsplash.com/$RES_X'x'$RES_Y'/?'$SOURCE_ARG
-        echo "--> $SEARCH_TERM is selected as source."
+        *) 
+        SOURCE_URL=https://source.unsplash.com/featured/$RES_X'x'$RES_Y'/?'$SOURCE_ARG
+        echo "--> $SOURCE_ARG is selected as source."
         ;;
     esac
 }
@@ -40,11 +43,11 @@ setSource()
 printHelp()
 {
     echo "Usage:"
-    echo "wpctl  SOURCE"
-    echo "      random"
-    echo "      daily"
-    echo "      collection"
-    echo "      topic1,topic2"
+    echo "wpctl <SOURCE>"
+    echo "       random"
+    echo "       daily"
+    echo "       collection"
+    echo "       topic1,topic2"
 }
 
 
@@ -65,7 +68,7 @@ then
     getWallPaper
     setWallPaper
     echo "--> From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
-    notify-send "From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y"
+    notify-send "From source '$SOURCE_ARG' wallpaper set. $RES_X x $RES_Y" "$IMAGE_URL"
 fi
 
 echo "$RESULT"
