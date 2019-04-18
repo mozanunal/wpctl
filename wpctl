@@ -48,6 +48,12 @@ printHelp()
     echo "       daily"
     echo "       collection"
     echo "       topic1,topic2"
+    echo
+    echo "Example Crontab Commands: "
+    echo "0 * * * *    wpctl random"
+    echo "0 10 * * *   wpctl daily"
+    echo "*/15 * * * * wpctl cat"
+    echo "0 */3 * * *  wpctl blue"
 }
 
 

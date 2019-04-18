@@ -7,7 +7,7 @@ Wallpaper Control is a minimalist wallpaaper automation tool for linux based on 
 It is working with Unsplash Api
 
 - Minimalist 100 lines of code zero dependency
-- Auto resulation detection
+- Auto resolution detection
 - Multi monitor handling
 - Tested on Ubuntu 18.04 with GNOME Desktop
 
@@ -41,6 +41,33 @@ user@user:$ wpctl random
 https://source.unsplash.com/random/1920x1080
 --> From source 'random' wallpaper set. 1920 x 1080
 ```
+
+Wallpapers can automatically updated using crontab. Write following command and add line according to your favorite configuration
+```
+crontab -e
+```
+
+
+Every hours pick a random wallpaper
+```
+0 * * * * wpctl random
+```
+
+Every day get daily photo as wallpaper
+```
+0 10 * * * wpctl daily
+```
+
+Every 15 mins pick a cat image as your wallpaper
+```
+*/15 * * * * wpctl cat
+```
+
+Every 3 hours pick a blue image as your wallpaper
+```
+0 */3 * * * wpctl blue
+```
+
 
 ### Uninstalling
 
