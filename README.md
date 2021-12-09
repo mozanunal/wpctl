@@ -50,33 +50,33 @@ crontab -e
 
 Every hours pick a random wallpaper
 ```
-0 * * * * wpctl random
+0 * * * * /usr/local/bin/wpct random
 ```
 
 Every day get daily photo as wallpaper
 ```
-0 10 * * * wpctl daily
+0 10 * * * /usr/local/bin/wpct daily
 ```
 
 Every 15 mins pick a cat image as your wallpaper
 ```
-*/15 * * * * wpctl cat
+*/15 * * * * /usr/local/bin/wpct cat
 ```
 
 Every 3 hours pick a blue image as your wallpaper
 ```
-0 */3 * * * wpctl blue
+0 */3 * * * /usr/local/bin/wpct blue
 ```
 
 
 ### Uninstalling
 
-Remove binaries
+Remove the binaries
 ```bash
 sudo rm /usr/local/bin/wpctl
 ```
 
-Remove picture
+Remove the pictures
 ```
 rm -rf $HOME/wpctl
 ```
