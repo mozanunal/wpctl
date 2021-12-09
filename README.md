@@ -20,7 +20,7 @@ sudo apt-get install wget notify-send
 ### Installing
 
 ```bash
-sudo wget --quiet https://github.com/mozanunal/wpctl/releases/download/0.0.2/wpctl \
+sudo wget --quiet https://github.com/mozanunal/wpctl/releases/download/0.1.0/wpctl \
           -O /usr/local/bin/wpctl && \
           sudo chmod +x /usr/local/bin/wpctl
 

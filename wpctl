@@ -31,7 +31,7 @@ setSource()
         SOURCE_URL=https://source.unsplash.com/daily
         echo "--> Daily is selected as source.";;
         "collection") 
-        SOURCE_URL=https://source.unsplash.com/collection/454888/$RES_X'x'$RES_Y
+        SOURCE_URL=https://source.unsplash.com/collection/4277594/$RES_X'x'$RES_Y
         echo "--> Collection is selected as source.";;
         *) 
         SOURCE_URL=https://source.unsplash.com/featured/$RES_X'x'$RES_Y'/?'$SOURCE_ARG
@@ -50,10 +50,10 @@ printHelp()
     echo "       topic1,topic2"
     echo
     echo "Example Crontab Commands: "
-    echo "0 * * * *    wpctl random"
-    echo "0 10 * * *   wpctl daily"
-    echo "*/15 * * * * wpctl cat"
-    echo "0 */3 * * *  wpctl blue"
+    echo "0 * * * *    /usr/local/bin/wpctl random"
+    echo "0 10 * * *   /usr/local/bin/wpctl daily"
+    echo "*/15 * * * * /usr/local/bin/wpctl cat"
+    echo "0 */3 * * *  /usr/local/bin/wpctl blue"
 }
 
 
@@ -67,6 +67,8 @@ then
     if [ ! -d "$DIRECTORY" ]; then
         mkdir -p $PICTURE_DIRECTORY
     fi
+    export DISPLAY=:0 
+    export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
     getScreenRes
     mkdir -p $PICTURE_DIRECTORY
     setSource
